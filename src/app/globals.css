@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary-dark: #3d2b23;
+  --color-accent-gold: #a27764;
+  --color-muted-brown: #7a6256;
+  --color-bg-luxury: #ffffff;
+  --color-bg-sand: #f6f1f0;
+
+  --font-display: "Bodoni Moda", serif;
+  --font-serif-body: "Lora", serif;
+  --font-sans-ui: "Inter", sans-serif;
+  --font-sans-alt: "Montserrat", sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #3d2b23;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-serif-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Luxury custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f6f1f0;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1bbb2;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a27764;
+}
+
+/* Utilities for smooth transitions */
+.transition-luxury {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
