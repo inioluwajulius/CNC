@@ -28,22 +28,22 @@ export default function Services() {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-bg-luxury pt-12 pb-24">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <div className="w-full min-h-screen bg-bg-luxury pt-8 sm:pt-12 pb-20 sm:pb-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         
         {/* Header Title */}
-        <div className="text-center mb-16 space-y-4">
-          <span className="font-sans-alt text-[10px] tracking-[0.4em] uppercase text-accent-gold block">
+        <div className="text-center mb-10 sm:mb-16 space-y-3 sm:space-y-4">
+          <span className="font-sans-alt text-[9px] sm:text-[10px] tracking-[0.4em] uppercase text-accent-gold block">
             Our Offerings
           </span>
-          <h1 className="font-display text-4xl md:text-5xl text-primary-dark font-normal tracking-wide uppercase">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl text-primary-dark font-normal tracking-wide uppercase">
             Bespoke Services
           </h1>
           <div className="w-16 h-[1px] bg-accent-gold mx-auto mt-4" />
         </div>
 
         {/* Services Showcase */}
-        <div className="space-y-24">
+        <div className="space-y-16 sm:space-y-24">
           {serviceCards.map((service, idx) => (
             <motion.div
               key={idx}
@@ -51,26 +51,26 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className={`flex flex-col lg:flex-row gap-12 items-center ${
+              className={`flex flex-col lg:flex-row gap-8 sm:gap-12 items-center ${
                 idx % 2 === 1 ? "lg:flex-row-reverse" : ""
               }`}
             >
               {/* Text Side */}
-              <div className="flex-1 space-y-6">
+              <div className="flex-1 space-y-4 sm:space-y-6">
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-bg-sand flex items-center justify-center">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 bg-bg-sand flex items-center justify-center shrink-0">
                     {service.icon}
                   </div>
-                  <h3 className="font-display text-2xl text-primary-dark font-normal">
+                  <h3 className="font-display text-xl sm:text-2xl text-primary-dark font-normal">
                     {service.title}
                   </h3>
                 </div>
                 
-                <p className="font-serif-body text-[15px] text-muted-brown leading-relaxed">
+                <p className="font-serif-body text-[13px] sm:text-[15px] text-muted-brown leading-relaxed">
                   {service.desc}
                 </p>
 
-                <div className="pt-2 flex space-x-4">
+                <div className="pt-2 flex flex-wrap gap-3 sm:gap-4">
                   <Link
                     href="/contact"
                     className="flex items-center space-x-2 text-primary-dark hover:text-accent-gold font-sans-alt text-[10px] font-semibold tracking-[0.2em] uppercase transition-colors"
@@ -91,11 +91,12 @@ export default function Services() {
               </div>
 
               {/* Image Side */}
-              <div className="flex-1 w-full relative h-[350px] overflow-hidden bg-bg-sand shadow-lg border border-bg-sand/30">
+              <div className="flex-1 w-full relative h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden bg-bg-sand shadow-lg border border-bg-sand/30">
                 <Image
                   src={service.image}
                   alt={service.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>
@@ -104,20 +105,20 @@ export default function Services() {
         </div>
 
         {/* Sourcing Callout Section */}
-        <div className="mt-24 bg-primary-dark text-white p-12 text-center space-y-6 max-w-4xl mx-auto shadow-xl">
-          <span className="font-sans-alt text-[10px] tracking-[0.3em] uppercase text-accent-gold block">
+        <div className="mt-16 sm:mt-24 bg-primary-dark text-white p-6 sm:p-8 md:p-12 text-center space-y-4 sm:space-y-6 max-w-4xl mx-auto shadow-xl">
+          <span className="font-sans-alt text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-accent-gold block">
             Executive Sourcing Channel
           </span>
-          <h3 className="font-display text-3xl font-normal tracking-wide">
+          <h3 className="font-display text-2xl sm:text-3xl font-normal tracking-wide">
             Need an exclusive item procured?
           </h3>
-          <p className="font-serif-body text-[14px] text-bg-sand/80 max-w-2xl mx-auto leading-relaxed">
+          <p className="font-serif-body text-[13px] sm:text-[14px] text-bg-sand/80 max-w-2xl mx-auto leading-relaxed">
             Our luxury network coordinators have relationships with master craftsmen, boutique distilleries, and designers in Europe, Asia, and North America. Let us manage the customs, transport, and elegant packing.
           </p>
           <div>
             <Link
               href="/contact"
-              className="inline-block bg-accent-gold hover:bg-white hover:text-primary-dark text-white px-8 py-4 font-sans-alt text-[11px] font-semibold tracking-[0.2em] uppercase transition-colors duration-500 rounded-none"
+              className="inline-block bg-accent-gold hover:bg-white hover:text-primary-dark text-white px-6 sm:px-8 py-3.5 sm:py-4 font-sans-alt text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase transition-colors duration-500 rounded-none"
             >
               Connect with Sourcing Agent
             </Link>
