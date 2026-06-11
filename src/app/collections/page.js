@@ -180,25 +180,162 @@ function CollectionsContent() {
         "120 Cream Textured Cartridge Sheets",
       ],
     },
+    {
+      id: 9,
+      name: "C&C Luxury E-Gift Card",
+      category: "Accessories",
+      price: "₦200,000",
+      rawPrice: 200000,
+      image: "/luxury_hamper_hero.png",
+      tag: "E-Gift Card",
+      desc: "Give the gift of choice. The C&C Luxury Digital E-Gift Card allows your recipient to curate their own bespoke crate or select from our seasonal collections. Never expires.",
+      ingredients: [
+        "Selectable denominations: ₦200k, ₦500k, ₦1M, ₦2.5M",
+        "Instant delivery via email or WhatsApp",
+        "Optional custom message delivery",
+        "Redeemable online or at our Ikoyi showroom",
+      ],
+    },
+    {
+      id: 10,
+      name: "The Boss Luxe Collection",
+      category: "Hampers",
+      price: "₦900,000",
+      rawPrice: 900000,
+      image: "/wood_crate.png",
+      tag: "Elite Tier",
+      desc: "An elite compilation for executive tastemakers. Centered around rare reserve cognacs, premium crystal decanters, imported Italian leather accessories, and hand-selected gourmet confections.",
+      ingredients: [
+        "Hennessy X.O Cognac (700ml)",
+        "Two Hand-Blown Baccarat Crystal Tumblers",
+        "Italian Leather Desk Planner & Valet Tray",
+        "Signature Oud & Saffron Room Diffuser",
+        "Imported Truffle Honey & Gold Leaf Chocolates",
+        "Monogrammed Linen Pocket Square",
+      ],
+    },
+    {
+      id: 11,
+      name: "The Mini Harrods Box",
+      category: "Occasion",
+      price: "₦800,000",
+      rawPrice: 800000,
+      image: "/velvet_box.png",
+      tag: "Sourced Luxury",
+      desc: "A prestigious selection of fine English tea accompaniments, premium bone china teacups, and luxury lifestyle accessories.",
+      ingredients: [
+        "Harrods English Breakfast Tea (125g Loose Leaf)",
+        "Two Premium Bone China Teacups & Saucers",
+        "Silver-Plated Tea Strainer",
+        "Handcrafted Rose & Honey Shortbread Biscuits",
+        "Scented Harrods Signature Candle",
+        "Presented in a Gold-Embossed Emerald Box",
+      ],
+    },
+    {
+      id: 12,
+      name: "The Corporate Starter Crate",
+      category: "Corporate",
+      price: "₦100,000",
+      rawPrice: 100000,
+      image: "/wood_crate.png",
+      tag: "Corporate Tier",
+      desc: "Essential desktop curation for teams. Premium vacuum flask, branded notebook, and fine tea selections.",
+      ingredients: [
+        "Branded vacuum flask (500ml)",
+        "Premium A5 notebook with pen",
+        "Artisan tea bag selection box",
+        "Handcrafted butter cookies jar",
+      ],
+    },
+    {
+      id: 13,
+      name: "The Corporate Standard Crate",
+      category: "Corporate",
+      price: "₦150,000",
+      rawPrice: 150000,
+      image: "/wood_crate.png",
+      tag: "Corporate Tier",
+      desc: "Elevated onboarding package. Wireless charger, insulated flask, executive writing set, and artisan snacks.",
+      ingredients: [
+        "Wooden desktop wireless charger",
+        "Insulated stainless steel water bottle",
+        "Executive ballpoint writing set",
+        "Gourmet roasted cashew nuts",
+        "Handmade dark chocolate bar",
+      ],
+    },
+    {
+      id: 14,
+      name: "The Corporate Premium Crate",
+      category: "Corporate",
+      price: "₦250,000",
+      rawPrice: 250000,
+      image: "/wood_crate.png",
+      tag: "Corporate Tier",
+      desc: "Refined client appreciation crate. Premium single-malt whiskey, crystal tumblers, leather travel wallet, and fine chocolates.",
+      ingredients: [
+        "Premium Single-Malt Scotch Whiskey (700ml)",
+        "Two crystal whiskey tumblers",
+        "Genuine leather travel wallet",
+        "Assorted Belgian praline chocolates box",
+      ],
+    },
+    {
+      id: 15,
+      name: "The Corporate Executive Crate",
+      category: "Corporate",
+      price: "₦400,000",
+      rawPrice: 400000,
+      image: "/wood_crate.png",
+      tag: "Corporate Tier",
+      desc: "Executive distinction set. Rare aged spirits, leather desk pads, brass desk accessories, and bespoke stationery.",
+      ingredients: [
+        "Aged Single-Malt Scotch Whiskey (18 Year)",
+        "Bespoke leather desk blotter pad",
+        "Solid brass pen holder and letter opener",
+        "Fine stationery and envelopes set",
+        "Signature room diffuser",
+      ],
+    },
+    {
+      id: 16,
+      name: "The Corporate Elite Crate",
+      category: "Corporate",
+      price: "₦500,000",
+      rawPrice: 500000,
+      image: "/wood_crate.png",
+      tag: "Corporate Tier",
+      desc: "The pinnacle of corporate recognition. Prestige champagne, luxury writing instrument, bespoke leather accessories, and rare gourmand elements.",
+      ingredients: [
+        "Prestige Cuvée Champagne (750ml)",
+        "Luxury fountain writing instrument",
+        "Bespoke leather portfolio bag",
+        "Exotic spices and truffle-infused goods set",
+        "Monogrammed keepsake linen collection",
+      ],
+    },
   ];
 
   useEffect(() => {
     const catParam = searchParams.get("cat");
-    if (catParam) setActiveFilter(catParam);
-
     const searchParam = searchParams.get("search");
-    if (searchParam) {
-      setSearchQuery(searchParam.toLowerCase());
-      setActiveFilter("All");
-    }
-
     const wishlistParam = searchParams.get("wishlist");
-    if (wishlistParam === "true") setActiveFilter("Wishlist");
-
     const savedWishlist = JSON.parse(
       localStorage.getItem("cnc_wishlist") || "[]"
     );
-    setWishlist(savedWishlist);
+
+    const timer = setTimeout(() => {
+      if (catParam) setActiveFilter(catParam);
+      if (searchParam) {
+        setSearchQuery(searchParam.toLowerCase());
+        setActiveFilter("All");
+      }
+      if (wishlistParam === "true") setActiveFilter("Wishlist");
+      setWishlist(savedWishlist);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, [searchParams]);
 
   const toggleWishlist = (productId) => {

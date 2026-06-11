@@ -57,7 +57,10 @@ export default function Navbar() {
 
   // Close mobile menu on route change
   useEffect(() => {
-    setIsOpen(false);
+    const timer = setTimeout(() => {
+      setIsOpen(false);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   const menuItems = [
@@ -77,6 +80,7 @@ export default function Navbar() {
       ],
     },
     { name: "Services", href: "/services" },
+    { name: "Editorial", href: "/blog" },
     { name: "About Us", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];

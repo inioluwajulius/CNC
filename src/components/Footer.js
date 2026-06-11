@@ -94,6 +94,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/blog"
+                  className="hover:text-accent-gold transition-colors duration-300"
+                >
+                  Editorial
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/contact"
                   className="hover:text-accent-gold transition-colors duration-300"
                 >

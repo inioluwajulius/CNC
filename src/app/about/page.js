@@ -115,7 +115,7 @@ export default function About() {
             Press &amp; Recognitions
           </p>
           <div className="max-w-2xl mx-auto italic font-serif-body text-base sm:text-lg text-primary-dark leading-relaxed px-4">
-            "C&amp;C Luxury has established itself as the leading authority in bespoke gifting across West Africa, blending luxury European brands with handcrafted Nigerian craftsmanship."
+            &ldquo;C&amp;C Luxury has established itself as the leading authority in bespoke gifting across West Africa, blending luxury European brands with handcrafted Nigerian craftsmanship.&rdquo;
           </div>
           <span className="block mt-4 font-sans-alt text-[9px] tracking-[0.2em] uppercase font-semibold text-accent-gold">
             The Luxury Network Magazine

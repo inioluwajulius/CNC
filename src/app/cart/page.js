@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -16,32 +16,35 @@ import {
 } from "lucide-react";
 
 export default function Cart() {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "The Wedding Luxury Crate",
-      price: 250000,
-      image: "/luxury_hamper_hero.png",
-      quantity: 1,
-      options:
-        "Monogram: None | Inside: Premium Sourced Champagnes & Linens",
-    },
-  ]);
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("cnc_cart") || "[]");
+    // If empty in storage, initialize with default to make UI look nice, or keep empty. Let's load whatever is in localStorage.
+    const timer = setTimeout(() => {
+      setCartItems(savedCart);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   const updateQuantity = (id, amount) => {
-    setCartItems(
-      cartItems.map((item) => {
-        if (item.id === id) {
-          const nextQty = item.quantity + amount;
-          return { ...item, quantity: nextQty < 1 ? 1 : nextQty };
-        }
-        return item;
-      })
-    );
+    const updated = cartItems.map((item) => {
+      if (item.id === id) {
+        const nextQty = item.quantity + amount;
+        return { ...item, quantity: nextQty < 1 ? 1 : nextQty };
+      }
+      return item;
+    });
+    setCartItems(updated);
+    localStorage.setItem("cnc_cart", JSON.stringify(updated));
+    window.dispatchEvent(new Event("cartUpdated"));
   };
 
   const removeItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+    const updated = cartItems.filter((item) => item.id !== id);
+    setCartItems(updated);
+    localStorage.setItem("cnc_cart", JSON.stringify(updated));
+    window.dispatchEvent(new Event("cartUpdated"));
   };
 
   const subtotal = cartItems.reduce(

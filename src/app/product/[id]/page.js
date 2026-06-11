@@ -20,6 +20,7 @@ export default function ProductPage({ params }) {
   const productId = parseInt(resolvedParams.id, 10);
 
   const [added, setAdded] = useState(false);
+  const [selectedDenomination, setSelectedDenomination] = useState("₦200,000");
 
   const products = [
     {
@@ -117,6 +118,149 @@ export default function ProductPage({ params }) {
         "Exquisite Custom Keepsake Box",
       ],
     },
+    {
+      id: 7,
+      name: "Crystal Champagne Flutes (Pair)",
+      price: "₦45,000",
+      image: "/luxury_hamper_hero.png",
+      tag: "Keepsakes",
+      desc: "Hand-cut lead crystal flutes presented in a gold-stamped presentation box.",
+      ingredients: [
+        "Two Lead Crystal Champagne Flutes",
+        "Satin-lined Presentation Gift Box",
+      ],
+    },
+    {
+      id: 8,
+      name: "Handcrafted Leather Journal",
+      price: "₦28,000",
+      image: "/wood_crate.png",
+      tag: "Stationery",
+      desc: "Genuine full-grain leather notebook hand-stitched in Lagos, with refilling cartridge sheets.",
+      ingredients: [
+        "Full-Grain Hand-Stitched Leather Notebook",
+        "120 Cream Textured Cartridge Sheets",
+      ],
+    },
+    {
+      id: 9,
+      name: "C&C Luxury E-Gift Card",
+      price: "₦200,000",
+      image: "/luxury_hamper_hero.png",
+      tag: "E-Gift Card",
+      desc: "Give the gift of choice. The C&C Luxury Digital E-Gift Card allows your recipient to curate their own bespoke crate or select from our seasonal collections. Never expires.",
+      ingredients: [
+        "Selectable denominations: ₦200k, ₦500k, ₦1M, ₦2.5M",
+        "Instant delivery via email or WhatsApp",
+        "Optional custom message delivery",
+        "Redeemable online or at our Ikoyi showroom",
+      ],
+    },
+    {
+      id: 10,
+      name: "The Boss Luxe Collection",
+      price: "₦900,000",
+      image: "/wood_crate.png",
+      tag: "Elite Tier",
+      desc: "An elite compilation for executive tastemakers. Centered around rare reserve cognacs, premium crystal decanters, imported Italian leather accessories, and hand-selected gourmet confections.",
+      ingredients: [
+        "Hennessy X.O Cognac (700ml)",
+        "Two Hand-Blown Baccarat Crystal Tumblers",
+        "Italian Leather Desk Planner & Valet Tray",
+        "Signature Oud & Saffron Room Diffuser",
+        "Imported Truffle Honey & Gold Leaf Chocolates",
+        "Monogrammed Linen Pocket Square",
+      ],
+    },
+    {
+      id: 11,
+      name: "The Mini Harrods Box",
+      price: "₦800,000",
+      image: "/velvet_box.png",
+      tag: "Sourced Luxury",
+      desc: "A prestigious selection of fine English tea accompaniments, premium bone china teacups, and luxury lifestyle accessories.",
+      ingredients: [
+        "Harrods English Breakfast Tea (125g Loose Leaf)",
+        "Two Premium Bone China Teacups & Saucers",
+        "Silver-Plated Tea Strainer",
+        "Handcrafted Rose & Honey Shortbread Biscuits",
+        "Scented Harrods Signature Candle",
+        "Presented in a Gold-Embossed Emerald Box",
+      ],
+    },
+    {
+      id: 12,
+      name: "The Corporate Starter Crate",
+      price: "₦100,000",
+      image: "/wood_crate.png",
+      tag: "Corporate Tier",
+      desc: "Essential desktop curation for teams. Premium vacuum flask, branded notebook, and fine tea selections.",
+      ingredients: [
+        "Branded vacuum flask (500ml)",
+        "Premium A5 notebook with pen",
+        "Artisan tea bag selection box",
+        "Handcrafted butter cookies jar",
+      ],
+    },
+    {
+      id: 13,
+      name: "The Corporate Standard Crate",
+      price: "₦150,000",
+      image: "/wood_crate.png",
+      tag: "Corporate Tier",
+      desc: "Elevated onboarding package. Wireless charger, insulated flask, executive writing set, and artisan snacks.",
+      ingredients: [
+        "Wooden desktop wireless charger",
+        "Insulated stainless steel water bottle",
+        "Executive ballpoint writing set",
+        "Gourmet roasted cashew nuts",
+        "Handmade dark chocolate bar",
+      ],
+    },
+    {
+      id: 14,
+      name: "The Corporate Premium Crate",
+      price: "₦250,000",
+      image: "/wood_crate.png",
+      tag: "Corporate Tier",
+      desc: "Refined client appreciation crate. Premium single-malt whiskey, crystal tumblers, leather travel wallet, and fine chocolates.",
+      ingredients: [
+        "Premium Single-Malt Scotch Whiskey (700ml)",
+        "Two crystal whiskey tumblers",
+        "Genuine leather travel wallet",
+        "Assorted Belgian praline chocolates box",
+      ],
+    },
+    {
+      id: 15,
+      name: "The Corporate Executive Crate",
+      price: "₦400,000",
+      image: "/wood_crate.png",
+      tag: "Corporate Tier",
+      desc: "Executive distinction set. Rare aged spirits, leather desk pads, brass desk accessories, and bespoke stationery.",
+      ingredients: [
+        "Aged Single-Malt Scotch Whiskey (18 Year)",
+        "Bespoke leather desk blotter pad",
+        "Solid brass pen holder and letter opener",
+        "Fine stationery and envelopes set",
+        "Signature room diffuser",
+      ],
+    },
+    {
+      id: 16,
+      name: "The Corporate Elite Crate",
+      price: "₦500,000",
+      image: "/wood_crate.png",
+      tag: "Corporate Tier",
+      desc: "The pinnacle of corporate recognition. Prestige champagne, luxury writing instrument, bespoke leather accessories, and rare gourmand elements.",
+      ingredients: [
+        "Prestige Cuvée Champagne (750ml)",
+        "Luxury fountain writing instrument",
+        "Bespoke leather portfolio bag",
+        "Exotic spices and truffle-infused goods set",
+        "Monogrammed keepsake linen collection",
+      ],
+    },
   ];
 
   const product = products.find((p) => p.id === productId);
@@ -146,7 +290,33 @@ export default function ProductPage({ params }) {
     .filter((p) => p.id !== product.id)
     .slice(0, 3);
 
+  const displayPrice = product.id === 9 ? selectedDenomination : product.price;
+
   const handleAddToCart = () => {
+    const cart = JSON.parse(localStorage.getItem("cnc_cart") || "[]");
+    const itemPrice = product.id === 9 
+      ? parseInt(selectedDenomination.replace(/[^0-9]/g, ""), 10) 
+      : parseInt(product.price.replace(/[^0-9]/g, ""), 10);
+    const itemOptions = product.id === 9 
+      ? `Denomination: ${selectedDenomination}` 
+      : "Standard Selection";
+
+    const existingIndex = cart.findIndex((item) => item.id === product.id && item.options === itemOptions);
+    if (existingIndex > -1) {
+      cart[existingIndex].quantity += 1;
+    } else {
+      cart.push({
+        id: product.id,
+        name: product.name,
+        price: itemPrice,
+        image: product.image,
+        quantity: 1,
+        options: itemOptions,
+      });
+    }
+    localStorage.setItem("cnc_cart", JSON.stringify(cart));
+    window.dispatchEvent(new Event("cartUpdated"));
+
     setAdded(true);
     setTimeout(() => {
       setAdded(false);
@@ -201,9 +371,27 @@ export default function ProductPage({ params }) {
                 {product.name}
               </h1>
               <span className="font-sans-ui text-lg sm:text-xl font-semibold tracking-wider text-primary-dark block">
-                {product.price}
+                {displayPrice}
               </span>
             </div>
+
+            {product.id === 9 && (
+              <div className="space-y-2 border-b border-bg-sand pb-5 sm:pb-6">
+                <label className="font-sans-alt text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-semibold text-primary-dark block">
+                  Select Denomination:
+                </label>
+                <select
+                  value={selectedDenomination}
+                  onChange={(e) => setSelectedDenomination(e.target.value)}
+                  className="w-full bg-white border border-bg-sand px-4 py-3 text-xs font-sans-alt tracking-[0.1em] text-primary-dark focus:outline-none focus:border-accent-gold rounded-none"
+                >
+                  <option value="₦200,000">₦200,000 NGN</option>
+                  <option value="₦500,000">₦500,000 NGN</option>
+                  <option value="₦1,000,000">₦1,000,000 NGN</option>
+                  <option value="₦2,500,000">₦2,500,000 NGN</option>
+                </select>
+              </div>
+            )}
 
             <p className="font-serif-body text-[14px] sm:text-[15px] text-muted-brown leading-relaxed border-b border-bg-sand pb-5 sm:pb-6">
               {product.desc}

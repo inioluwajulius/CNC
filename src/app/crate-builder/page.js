@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -470,7 +471,7 @@ export default function CrateBuilder() {
                       <div>
                         <span className="text-[10px] font-sans-alt tracking-wider text-accent-gold uppercase font-bold block mb-1">Greeting Card Theme</span>
                         <p className="font-serif-body font-semibold">{selectedCard.name}</p>
-                        <p className="font-serif-body italic text-muted-brown">"{cardNote || "Empty note"}"</p>
+                        <p className="font-serif-body italic text-muted-brown">&ldquo;{cardNote || "Empty note"}&rdquo;</p>
                       </div>
                     )}
                   </div>
