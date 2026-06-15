@@ -76,6 +76,7 @@ export default function About() {
               src="/luxury_hamper_hero.png"
               alt="C&C Luxury brand story — bespoke gift curation in Lagos, Nigeria"
               fill
+              priority
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover shadow-2xl"
             />

@@ -412,6 +412,7 @@ function CollectionsContent() {
                   src={cat.image}
                   alt={`${cat.name} — C&C Luxury gift collection`}
                   fill
+                  priority
                   sizes="(max-width: 640px) 50vw, 25vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-[0.4]"
                 />

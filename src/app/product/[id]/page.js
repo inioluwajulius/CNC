@@ -348,6 +348,7 @@ export default function ProductPage({ params }) {
               src={product.image}
               alt={`${product.name} — C&C Luxury bespoke gift hamper`}
               fill
+              priority
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
